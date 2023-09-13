@@ -2,7 +2,6 @@
   position: fixed;
   width: 430px;
   height: 330px;
-  border-radius: 30px;
   display: flex;
   flex-direction: column;
   gap: 30px;
