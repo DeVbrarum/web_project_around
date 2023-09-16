@@ -92,12 +92,16 @@ likeButton.forEach(function (button) {
 
 function likeAction(evt) {
   evt.addEventListener("click", function () {
-    const clickButton = evt.closest(".photos__like-btn");
-    const likeImg = evt.querySelector(".photos__like-img");
+    let clickButton = evt.closest(".photos__like-btn");
+    let likeImg = evt.querySelector(".photos__like-img");
     if (clickButton) {
-      likeImg.classList.toggle("photos__like-btn_activated");
+      likeButtonActived(likeImg);
     }
   });
+}
+
+function likeButtonActived(e) {
+  e.classList.toggle("photos__like-btn_activated");
 }
 
 function addPhoto(urlPhoto, namePhoto) {
