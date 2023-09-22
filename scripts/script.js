@@ -1,40 +1,62 @@
 //Open and close form profile
 const profileForm = document.querySelector(".edit-profile");
 const closeButton = document.querySelector(".form__close");
-const edditProfileButton = document.querySelector(".profile__editButton");
+const editProfileButton = document.querySelector(".profile__editButton");
 const profileBackground = document.querySelector(".form__background");
 const profileName = document.querySelector(".profile__info-name");
 const profileAbout = document.querySelector(".profile__info-about");
-const nameInput = document.querySelector(".edit-profile__name");
-const aboutInput = document.querySelector(".edit-profile__about");
 const saveButtonProfile = document.querySelector(".edit-profile__btn");
-const inputsForm = document.querySelector(".edit-profile__inputs");
+const inputsProfileForm = document.querySelector(".edit-profile__inputs");
 
-//Open and close add new image form
+//Variables of the form for adding images and the variables of the photos on the web page
 const formAddImg = document.querySelector(".addimg");
-const addImgButton = document.querySelector(".profile__addButton");
+const addNewImageButton = document.querySelector(".profile__addButton");
 const addImgBackground = document.querySelector(".addimg__background");
 const addImgClose = document.querySelector(".addimg__close");
-const addImgCreateButton = document.querySelector(".addimg__Btn");
 const addImgInputs = document.querySelector(".addimg__inputs");
 const photos = document.querySelector(".photos");
 const likeButton = document.querySelectorAll(".photos__like-btn");
+const postNewImageButton = document.querySelector(".addimg__btn");
 
-//Open and close Image popup
+//Variables of the Image popup
 const imgPopup = document.querySelector(".img-popup");
 const imgPopupBackground = document.querySelector(".img-popup__background");
-const imgPopupClose = document.querySelector(".img-popup__close ");
+const imgPopupClose = document.querySelector(".img-popup__close");
 const imgPopupPhotoButton = document.querySelectorAll(".photos__imgPopup-btn");
 
-//Validacion del formulario y estado de boton submit
-const userNameProfile = document.querySelector("[name=username]");
-const userAboutProfile = document.getElementById("aboutInput");
-const titleImgPost = document.getElementById("imgtitle");
-const urlImgPost = document.getElementById("urlInput");
-const profileButton = document.querySelector(".edit-profile__btn");
-const createButton = document.querySelector(".addimg__Btn");
+//Variables for form validation fields
+const nameInput = document.querySelector(".edit-profile__name");
+const aboutInput = document.querySelector(".edit-profile__about");
+const titleInput = document.querySelector(".addimg__title");
+const urlUserImage = document.querySelector(".addimg__url");
+const inputs = document.querySelectorAll(".form__input");
 
-const profileActionList = [edditProfileButton, profileBackground, closeButton];
+const fields = {
+  username: false,
+  about: false,
+  title: false,
+  urlImagen: false,
+};
+
+function toggleProfileForm() {
+  profileForm.classList.toggle("edit-profile_open");
+  resetProfile();
+}
+
+function resetProfile() {
+  let fieldsReset = [nameInput, aboutInput];
+  fieldsReset.forEach((item) => {
+    item.classList.remove("invalid");
+    item.classList.remove("correct");
+    item.nextElementSibling.classList.remove("empty-field_error");
+    fields[item.name] = false;
+  });
+  nameInput.value = profileName.textContent;
+  aboutInput.value = profileAbout.textContent;
+  buttonActivated();
+}
+
+const profileActionList = [editProfileButton, profileBackground, closeButton];
 
 profileActionList.forEach((item) => {
   item.addEventListener("click", () => {
@@ -42,13 +64,18 @@ profileActionList.forEach((item) => {
   });
 });
 
-function toggleProfileForm() {
-  profileForm.classList.toggle("edit-profile_open");
+function buttonDisabled() {
+  postNewImageButton.disabled = true;
+  postNewImageButton.classList.remove("addimg__btn_activa");
+
+  saveButtonProfile.disabled = true;
+  saveButtonProfile.classList.remove("edit-profile__btn_activa");
 }
 
-function resetProfile() {
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAbout.textContent;
+function buttonActivated() {
+  postNewImageButton.disabled = false;
+  postNewImageButton.classList.add("addimg__btn_activa");
+
   saveButtonProfile.disabled = false;
   saveButtonProfile.classList.add("edit-profile__btn_activa");
 }
@@ -60,53 +87,47 @@ function saveProfile(evt) {
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
 
-  toggleProfileForm(profileForm);
+  toggleProfileForm();
 }
 
 saveButtonProfile.addEventListener("click", saveProfile);
-inputsForm.addEventListener("submit", saveProfile);
+inputsProfileForm.addEventListener("submit", saveProfile);
 
-//Open and close add new image form
-function openAddimg(form) {
-  form.classList.add("addimage_is-opened");
+//Open the form to add a new image to the website
+const openAddImageForm = () => {
+  formAddImg.classList.add("addimage_is-opened");
+};
+
+function closeAddImageForm() {
+  let fieldsReset = [titleInput, urlUserImage];
+
+  fieldsReset.forEach((item) => {
+    item.value = "";
+    item.classList.remove("invalid");
+    item.classList.remove("correct");
+    item.nextElementSibling.classList.remove("empty-field_error");
+  });
+  postNewImageButton.disabled = true;
+  formAddImg.classList.remove("addimage_is-opened");
 }
 
-const addImageList = [addImgButton, addImgBackground, addImgClose];
+const addImageList = [addNewImageButton, addImgBackground, addImgClose];
 
 addImageList.forEach((item) => {
   item.addEventListener("click", () => {
-    closeAddimg();
+    closeAddImageForm();
   });
 });
 
-function closeAddimg() {
-  formAddImg.classList.remove("addimage_is-opened");
-  resetform();
-}
-
-addImgButton.addEventListener("click", () => openAddimg(formAddImg));
+addNewImageButton.addEventListener("click", () => openAddImageForm());
 
 likeButton.forEach(function (button) {
   likeAction(button);
 });
 
-function likeAction(evt) {
-  evt.addEventListener("click", function () {
-    let clickButton = evt.closest(".photos__like-btn");
-    let likeImg = evt.querySelector(".photos__like-img");
-    if (clickButton) {
-      likeButtonActived(likeImg);
-    }
-  });
-}
-
-function likeButtonActived(e) {
-  e.classList.toggle("photos__like-btn_activated");
-}
-
 function addPhoto(urlPhoto, namePhoto) {
-  const photosTemplate = document.querySelector(".photos__template").content;
-  const photoElement = photosTemplate
+  let photosTemplate = document.querySelector(".photos__template").content;
+  let photoElement = photosTemplate
     .querySelector(".photos__content")
     .cloneNode(true);
 
@@ -116,40 +137,38 @@ function addPhoto(urlPhoto, namePhoto) {
 
   photos.prepend(photoElement);
 
-  // Delete new photo added
-  const imgDeletBtn = photoElement.querySelector(".photos__trash-btn");
+  // Set option to delete for each new photo added
+  let imgDeletBtn = photoElement.querySelector(".photos__trash-btn");
   imgDeletBtn.addEventListener("click", function () {
     photoElement.remove();
   });
 
-  // Set show popup new photo added
+  // Set show popup for each new photo added
   let photoButton = photoElement.querySelector(".photos__imgPopup-btn");
   setPopupImgAction(photoButton);
 
-  // Set like button new photo added
-  const photoLikeBtn = photoElement.querySelector(".photos__like-btn");
-  likeAction(photoLikeBtn);
+  // Set like button for each new photo added
+  let photoLikeButton = photoElement.querySelector(".photos__like-img");
+  photoLikeButton.addEventListener("click", (evt) =>
+    evt.target.classList.toggle("photos__like-btn_activated")
+  );
 }
 
-// Create new post photo
 function addNewPhoto(evt) {
   evt.preventDefault();
-  const titleInput = document.querySelector(".addimg__title");
-  const urlInput = document.querySelector(".addimg__url");
 
-  addPhoto(urlInput.value, titleInput.value);
+  addPhoto(urlUserImage.value, titleInput.value);
 
-  urlInput.value = "";
   titleInput.value = "";
-  closeAddimg(formAddImg);
-  resetform();
+  urlUserImage.value = "";
+  closeAddImageForm(formAddImg);
 }
 
 addImgInputs.addEventListener("submit", addNewPhoto);
 
-const lista = [imgPopupClose, imgPopupBackground];
+let list = [imgPopupClose, imgPopupBackground];
 
-lista.forEach((item) => {
+list.forEach((item) => {
   item.addEventListener("click", () => {
     imgPopupCloseAct();
   });
@@ -159,7 +178,7 @@ function imgPopupCloseAct() {
   imgPopup.classList.toggle("img-popup_activated");
 }
 
-//Open photo in popup
+//open popup window selected image in larger size
 const imgPopupPhoto = document.querySelector(".img-popup__photo");
 const imgPopupTitle = document.querySelector(".img-popup__title");
 
@@ -180,7 +199,7 @@ function setPopupImgAction(btn) {
   });
 }
 
-//carga las imagenes preestablecidas por default al website
+//images to upload to the website
 const photosDefault = [
   {
     name: "Valle de Yosemite",
@@ -208,104 +227,84 @@ const photosDefault = [
   },
 ];
 
-//update default images to website
+//upload preset default images to website
 photosDefault.forEach((item) => addPhoto(item.link, item.name));
 
-const validateEmptyField = (message, evt) => {
-  const field = evt.target;
-  const fieldValue = evt.target.value;
+const expresiones = {
+  username: /^[a-zA-ZÀ-ÿ\s]{2,20}$/, // Letras, numeros, guion y guion_bajo
+  about: /^[a-zA-ZÀ-ÿ\s]{2,22}$/, // Letras y espacios, pueden llevar acentos.
+  title: /^[a-zA-ZÀ-ÿ\s0-9\_\-]{2,30}$/,
+};
 
-  if (fieldValue.trim().length < 2) {
-    field.classList.add("invalid");
-    field.nextElementSibling.innerText = message;
+const fieldsValidate = {
+  username: nameInput,
+  about: aboutInput,
+  title: titleInput,
+};
 
-    buttonState();
-  } else {
-    if (field.name == urlImgPost.name) {
-      validarUrl(evt);
-    } else {
-      buttonState();
-      field.classList.remove("invalid");
-      field.nextElementSibling.innerText = "";
-    }
+const validarFormulario = (e) => {
+  switch (e.target.name) {
+    case "username":
+      validarCampo(expresiones.username, e.target, fieldsValidate.username);
+      break;
+    case "about":
+      validarCampo(expresiones.about, e.target, fieldsValidate.about);
+      break;
+    case "title":
+      validarCampo(expresiones.title, e.target, fieldsValidate.title);
+      break;
+    case "urlImagen":
+      validateUrl(e.target);
+      break;
   }
 };
 
-userNameProfile.addEventListener("blur", (evt) =>
-  validateEmptyField("Escribe un nombre valido. Minimos 2 caracteres", evt)
-);
+const validarCampo = (expresion, input, field) => {
+  if (expresion.test(input.value)) {
+    field.classList.remove("invalid");
+    field.classList.add("correct");
+    input.nextElementSibling.classList.remove("empty-field_error");
+    fields[field.name] = true;
+    submitValidate();
+  } else {
+    field.classList.add("invalid");
+    field.classList.remove("correct");
+    input.nextElementSibling.classList.add("empty-field_error");
+    fields[field.name] = false;
+    submitValidate();
+  }
+};
 
-userAboutProfile.addEventListener("blur", (evt) =>
-  validateEmptyField("Escribe algo sobre ti. Minimos 2 caracteres", evt)
-);
-
-titleImgPost.addEventListener("blur", (evt) =>
-  validateEmptyField("Escribe un titulo valido. Minimos 2 caracteres", evt)
-);
-
-urlImgPost.addEventListener("blur", (evt) =>
-  validateEmptyField("Aporta una Url valida de una imagen", evt)
-);
-
-function validarUrl(evt) {
-  field = evt.target;
-  fieldValue = evt.target.value;
+function validateUrl() {
+  let urlfield = urlUserImage.value;
   var image = new Image();
-  image.src = fieldValue;
+  image.src = urlfield;
 
   image.addEventListener("load", () => {
-    field.classList.remove("invalid");
-    field.nextElementSibling.innerText = "";
-    buttonState();
+    urlUserImage.classList.remove("invalid");
+    urlUserImage.classList.add("correct");
+    urlUserImage.nextElementSibling.classList.remove("empty-field_error");
+    fields.urlImagen = true;
+    submitValidate();
   });
-
   image.addEventListener("error", () => {
-    field.classList.add("invalid");
-    field.nextElementSibling.innerText = "Url no valida. Por favor verificar";
-    buttonDisabled();
+    urlUserImage.classList.add("invalid");
+    urlUserImage.classList.remove("correct");
+    urlUserImage.nextElementSibling.classList.add("empty-field_error");
+    fields.urlImagen = false;
+    submitValidate();
   });
 }
 
-function buttonDisabled() {
-  document.getElementById("btnCrear").disabled = true;
-  createButton.classList.remove("addimg__Btn_activa");
+inputs.forEach((input) => {
+  input.addEventListener("keyup", validarFormulario);
+  input.addEventListener("blur", validarFormulario);
+});
 
-  document.getElementById("btnProfile").disabled = true;
-  profileButton.classList.remove("edit-profile__btn_activa");
-}
-
-function buttonState() {
-  fieldtitle = titleImgPost.value;
-  fieldUrl = urlImgPost.value;
-  fieldName = userNameProfile.value;
-  fieldAbout = userAboutProfile.value;
-
-  if (fieldtitle.trim().length < 2 || fieldUrl.trim().length < 2) {
-    document.getElementById("btnCrear").disabled = true;
-    createButton.classList.remove("addimg__Btn_activa");
+function submitValidate() {
+  if ((fields.username && fields.about) || (fields.title && fields.urlImagen)) {
+    buttonActivated();
   } else {
-    document.getElementById("btnCrear").disabled = false;
-    createButton.classList.add("addimg__Btn_activa");
+    buttonDisabled();
   }
-
-  if (fieldName.trim().length < 2 || fieldAbout.trim().length < 2) {
-    document.getElementById("btnProfile").disabled = true;
-    profileButton.classList.remove("edit-profile__btn_activa");
-  } else {
-    document.getElementById("btnProfile").disabled = false;
-    profileButton.classList.add("edit-profile__btn_activa");
-  }
-}
-
-function resetform() {
-  titleImgPost.classList.remove("invalid");
-  titleImgPost.nextElementSibling.innerText = "";
-
-  urlImgPost.classList.remove("invalid");
-  urlImgPost.nextElementSibling.innerText = "";
-
-  titleImgPost.value = "";
-  urlImgPost.value = "";
-  buttonDisabled();
-  resetProfile();
 }

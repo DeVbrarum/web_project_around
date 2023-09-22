@@ -96,11 +96,24 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 17px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.empty-field_error {
+  visibility: visible;
+  opacity: 1;
 }
 
 .invalid {
   color: red;
   border-bottom: solid 1px red;
+}
+
+.correct {
+  color: darkgreen;
+  border-bottom: solid 1px rgb(134, 211, 134);
 }
 
 @media screen and (max-width: 984px) {

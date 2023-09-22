@@ -37,7 +37,7 @@
   border-radius: 10px;
 }
 
-.addimg__Btn {
+.addimg__btn {
   width: 358px;
   height: 50.15px;
 
@@ -60,7 +60,7 @@
   cursor: default;
 }
 
-.addimg__Btn_activa {
+.addimg__btn_activa {
   background-color: #000000;
   cursor: pointer;
 }
@@ -79,7 +79,7 @@
     min-height: 322px;
   }
 
-  .addimg__Btn {
+  .addimg__btn {
     width: 238px;
     min-width: 238px;
     min-height: 46px;
