@@ -51,8 +51,8 @@ function resetProfile() {
     item.nextElementSibling.classList.remove("empty-field_error");
     fields[item.name] = false;
   });
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAbout.textContent;
+  nameInput.value = profileName.textContent.trim();
+  aboutInput.value = profileAbout.textContent.trim();
   buttonActivated();
 }
 
@@ -96,6 +96,7 @@ inputsProfileForm.addEventListener("submit", saveProfile);
 //Open the form to add a new image to the website
 const openAddImageForm = () => {
   formAddImg.classList.add("addimage_is-opened");
+  buttonDisabled();
 };
 
 function closeAddImageForm() {
@@ -260,7 +261,7 @@ const validarFormulario = (e) => {
 };
 
 const validarCampo = (expresion, input, field) => {
-  if (expresion.test(input.value)) {
+  if (expresion.test(input.value.trim())) {
     field.classList.remove("invalid");
     field.classList.add("correct");
     input.nextElementSibling.classList.remove("empty-field_error");
