@@ -111,11 +111,6 @@
   border-bottom: solid 1px red;
 }
 
-.correct {
-  color: darkgreen;
-  border-bottom: solid 1px rgb(134, 211, 134);
-}
-
 @media screen and (max-width: 984px) {
   .form {
     width: 238px;

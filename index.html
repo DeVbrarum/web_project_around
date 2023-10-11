@@ -51,7 +51,11 @@
               />
             </button>
 
-            <form class="form__inputs edit-profile__inputs" novalidate>
+            <form
+              class="form__inputs edit-profile__inputs"
+              name="userForm"
+              novalidate
+            >
               <input
                 class="form__input edit-profile__name"
                 type="text"
@@ -59,12 +63,10 @@
                 name="username"
                 placeholder="Nombre"
                 minlength="2"
-                maxlength="20"
+                maxlength="40"
                 required
               />
-              <span class="empty-field">
-                Escribe un nombre valido. Minimos 2 caracteres
-              </span>
+              <span class="empty-field"> Por favor, rellenar este campo. </span>
               <input
                 class="form__input edit-profile__about"
                 type="text"
@@ -72,13 +74,15 @@
                 name="about"
                 placeholder="Algo de mi"
                 minlength="2"
-                maxlength="22"
+                maxlength="200"
                 required
               />
-              <span class="empty-field">
-                Escribe algo sobre ti. Minimos 2 caracteres
-              </span>
-              <button type="submit" class="edit-profile__btn" id="btnProfile">
+              <span class="empty-field"> Por favor, rellenar este campo. </span>
+              <button
+                type="submit"
+                class="form__submit edit-profile__btn"
+                id="btnProfile"
+              >
                 Guardar
               </button>
             </form>
@@ -123,20 +127,18 @@
               />
             </button>
 
-            <form class="form__inputs addimg__inputs">
+            <form class="form__inputs addimg__inputs" name="userForm">
               <input
                 type="text"
                 class="form__input addimg__title"
-                id="imgtitle"
+                id="titleInput"
                 name="title"
                 placeholder="Titulo"
                 minlength="2"
                 maxlength="30"
                 required
               />
-              <span class="empty-field"
-                >Escribe un titulo valido. Minimos 2 caracteres.</span
-              >
+              <span class="empty-field">Por favor, rellena este campo.</span>
               <input
                 type="url"
                 class="form__input addimg__url"
@@ -146,15 +148,17 @@
                 required
               />
               <span class="empty-field">
-                Aporta una Url valida de una imagen.
+                Por favor, introduce una direcci&oacute;n web.
               </span>
-              <button type="submit" class="addimg__btn" disabled>Crear</button>
+              <button type="submit" class="form__submit addimg__btn" disabled>
+                Crear
+              </button>
             </form>
           </div>
         </section>
 
         <section class="img-popup">
-          <div class=".img-popup__background"></div>
+          <div class="img-popup__background"></div>
           <div class="img-popup__content" id="imagen">
             <button class="img-popup__close closebtn">
               <img
@@ -166,13 +170,13 @@
             <img src=" " alt="fotografia" class="img-popup__photo" />
             <h2 class="img-popup__title"></h2>
           </div>
-          <div class="img-popup__background"></div>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">Copyright &copy; Juan Avila</p>
       </footer>
     </div>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-# Proyecto 5: Alrededor de los Estados Unidos
+# Proyecto 7: Alrededor de los Estados Unidos
 
 ---
 
@@ -8,7 +8,7 @@
 
 ### Visita la página >>
 
-https://devbrarum.github.io/web_project_around/
+https://devbrarum.github.io/web_project_4_esp/
 
 ---
 
@@ -16,7 +16,7 @@ https://devbrarum.github.io/web_project_around/
 
 **Introducción**
 
-Este es un proyecti que experimenta con la interactividad de javascript simulando una red social de imagenes, donde puedes editar el nombre de perfil, añadir nuevos posts, dar like o eliminar los posts.
+Este es un proyecto que experimenta con la interactividad de javascript simulando una red social de imagenes, donde puedes editar el nombre de perfil, añadir nuevos posts, dar like o eliminar los posts.
 
 ### Actualizaciones
 
@@ -24,7 +24,7 @@ Este es un proyecti que experimenta con la interactividad de javascript simuland
 - Uso de reglas-at @import
 - Aplicación de responsividad
 - Implementacion de Javascript
-- Manipulacion DOM
+- Validacion formularios
 
 ---
 
@@ -40,10 +40,6 @@ Este es un proyecti que experimenta con la interactividad de javascript simuland
 
 **Figma**
 
-- [Enlace al proyecto en Figma](https://www.figma.com/file/i6HpqEzmTcK6wgBE7Dn4aZ/Web_Brief_Sprint_6_ES-%7C-Alrededor-de-los-EEUU-%7C-desktop-%2B-mobile?type=design&node-id=0-1&mode=design&t=UpICRQC8o4XnTNpY-0)
-
-**Imágenes**
-
-A la hora de trabajar, debes optar por exportar las imágenes directamente desde Figma; te recomendamos hacerlo para practicar más. No olvides optimizarlas [aquí](https://tinypng.com/), para que tu proyecto cargue más rápido.
+- [Enlace al proyecto en Figma](https://www.figma.com/file/LDMgqWesKpQkIwhOfEBuTS/WEB%2C-Sprint-5%3A-Around-The-U.S.-%7C-desktop-%2B-mobile?node-id=0%3A1)
 
 ¡Esperamos que te diviertas con JavaScript!
