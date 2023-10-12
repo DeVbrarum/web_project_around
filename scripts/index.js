@@ -95,13 +95,15 @@ const resetPostForm = () => {
     item.classList.remove("correct");
     item.nextElementSibling.classList.remove("empty-field_error");
   });
+  resetFieldstoFalse();
+  toggleButtonState();
 };
 
 const closePostForm = () => {
-  formAddImg.classList.remove("addimage_is-opened");
-  resetPostForm();
   const fieldPost = document.querySelector(".addimg__inputs");
   fieldPost.reset();
+  formAddImg.classList.remove("addimage_is-opened");
+  resetPostForm();
 };
 
 const setTogglePost = () => {
