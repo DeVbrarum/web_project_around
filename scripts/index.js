@@ -98,7 +98,7 @@ const resetPostForm = () => {
   resetFieldstoFalse();
   toggleButtonState();
 };
-
+//Por favor, introduce una direcci&oacute;n web.
 const closePostForm = () => {
   const fieldPost = document.querySelector(".addimg__inputs");
   fieldPost.reset();

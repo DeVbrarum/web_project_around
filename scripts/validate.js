@@ -20,16 +20,16 @@ const fieldsValidate = {
   title: titleInput,
 };
 
-const validarFormulario = (e) => {
+const validateForm = (e) => {
   switch (e.target.name) {
     case "username":
-      validarCampo(expresiones.username, e.target, fieldsValidate.username);
+      validateField(expresiones.username, e.target, fieldsValidate.username);
       break;
     case "about":
-      validarCampo(expresiones.about, e.target, fieldsValidate.about);
+      validateField(expresiones.about, e.target, fieldsValidate.about);
       break;
     case "title":
-      validarCampo(expresiones.title, e.target, fieldsValidate.title);
+      validateField(expresiones.title, e.target, fieldsValidate.title);
       break;
     case "urlImagen":
       validateUrl(e.target);
@@ -37,10 +37,18 @@ const validarFormulario = (e) => {
   }
 };
 
-const validarCampo = (expresion, input, field) => {
-  if (expresion.test(input.value.trim())) {
-    field.classList.remove("invalid");
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add("form__input_type_error");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("form__input-error_active");
+};
 
+const validateField = (expresion, input, field) => {
+  if (expresion.test(input.value.trim())) {
+    const errorMessage = input.validationMessage;
+    field.classList.remove("invalid");
+    input.nextElementSibling.textContent = errorMessage;
     input.nextElementSibling.classList.remove("empty-field_error");
     fields[field.name] = true;
     toggleButtonState();
@@ -89,7 +97,7 @@ const setEventListeners = (formElement) => {
   toggleButtonState();
 
   inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", validarFormulario);
+    inputElement.addEventListener("input", validateForm);
   });
 };
 
@@ -110,18 +118,22 @@ const enableValidation = () => {
   });
 };
 
-function validateUrl() {
-  let urlfield = urlInput.value;
-  var image = new Image();
+function validateUrl(field) {
+  let urlfield = field.value;
+  let image = new Image();
   image.src = urlfield;
 
   image.addEventListener("load", () => {
+    const errorMessage = urlInput.validationMessage;
+    urlInput.nextElementSibling.textContent = errorMessage;
     urlInput.classList.remove("invalid");
     urlInput.nextElementSibling.classList.remove("empty-field_error");
     fields.urlImagen = true;
     toggleButtonState();
   });
   image.addEventListener("error", () => {
+    const errorMessage = urlInput.validationMessage;
+    urlInput.nextElementSibling.textContent = errorMessage;
     urlInput.classList.add("invalid");
     urlInput.nextElementSibling.classList.add("empty-field_error");
     fields.urlImagen = false;
