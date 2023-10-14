@@ -37,13 +37,6 @@ const validateForm = (e) => {
   }
 };
 
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("form__input_type_error");
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
-};
-
 const validateField = (expresion, input, field) => {
   if (expresion.test(input.value.trim())) {
     const errorMessage = input.validationMessage;
@@ -119,26 +112,21 @@ const enableValidation = () => {
 };
 
 function validateUrl(field) {
-  let urlfield = field.value;
-  let image = new Image();
-  image.src = urlfield;
-
-  image.addEventListener("load", () => {
+  if (field.validity.valid) {
     const errorMessage = urlInput.validationMessage;
     urlInput.nextElementSibling.textContent = errorMessage;
     urlInput.classList.remove("invalid");
     urlInput.nextElementSibling.classList.remove("empty-field_error");
     fields.urlImagen = true;
     toggleButtonState();
-  });
-  image.addEventListener("error", () => {
+  } else {
     const errorMessage = urlInput.validationMessage;
     urlInput.nextElementSibling.textContent = errorMessage;
     urlInput.classList.add("invalid");
     urlInput.nextElementSibling.classList.add("empty-field_error");
     fields.urlImagen = false;
     toggleButtonState();
-  });
+  }
 }
 
 enableValidation();

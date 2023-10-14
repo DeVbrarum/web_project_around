@@ -92,7 +92,6 @@ const resetPostForm = () => {
 
   fieldsReset.forEach((item) => {
     item.classList.remove("invalid");
-    item.classList.remove("correct");
     item.nextElementSibling.classList.remove("empty-field_error");
   });
   resetFieldstoFalse();
@@ -110,6 +109,10 @@ const setTogglePost = () => {
   addNewImageButton.addEventListener("click", () => {
     openPostForm();
   });
+
+  if (window.keyup == "Escape") {
+    console.log("x");
+  }
 
   window.addEventListener("keydown", (evt) => {
     if (evt.key === "Escape") {
