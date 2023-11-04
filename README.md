@@ -1,4 +1,4 @@
-# Proyecto 7: Alrededor de los Estados Unidos
+# Proyecto 8: Alrededor de los Estados Unidos
 
 ---
 
@@ -25,6 +25,9 @@ Este es un proyecto que experimenta con la interactividad de javascript simuland
 - Aplicación de responsividad
 - Implementacion de Javascript
 - Validacion formularios
+- JavaScript Modular
+- Sentencias export e import
+- Trabajando en POO
 
 ---
 

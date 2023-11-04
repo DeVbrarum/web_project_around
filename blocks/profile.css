@@ -51,6 +51,8 @@
 }
 
 .profile__info-about {
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding: 0;
   margin: 0;
   font-family: "Inter", Arial, Helvetica, sans-serif;
