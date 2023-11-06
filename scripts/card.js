@@ -34,11 +34,6 @@ export default class Card {
   }
 
   _setEventListeners(element) {
-    const photoImg = element.querySelector(".photos__img");
-    const photoTitle = element
-      .closest(".photos__content")
-      .querySelector(".photos__title");
-
     // Set option to delete for each new photo added
     element
       .querySelector(".photos__trash-btn")

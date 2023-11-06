@@ -118,11 +118,7 @@ function setPopupImgAction(btn) {
     popuPropitaries.imgPopupTitle.textContent = photoTitle.textContent;
     openPopupImage();
 
-    window.addEventListener("keydown", (evt) => {
-      if (evt.key === "Escape") {
-        closePopupImage();
-      }
-    });
+    closesWithEscape();
   });
 }
 
@@ -131,11 +127,7 @@ function setToggleProfile() {
     openProfileForm();
   });
 
-  window.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      closeProfileForm();
-    }
-  });
+  closesWithEscape();
 
   const saveNewProfile = document.querySelector(".edit-profile__inputs");
   saveNewProfile.addEventListener("submit", saveProfile);
@@ -146,14 +138,19 @@ function setTogglePost() {
     openPostForm();
   });
 
-  window.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      closePostForm();
-    }
-  });
-
+  closesWithEscape();
   const addNewPost = document.querySelector(".addimg__inputs");
   addNewPost.addEventListener("submit", addNewPhoto);
+}
+
+function closesWithEscape() {
+  return window.addEventListener("keydown", (evt) => {
+    if (evt.key === "Escape") {
+      closePostForm();
+      closeProfileForm();
+      closePopupImage();
+    }
+  });
 }
 
 function setCloseForm(listClose) {
@@ -175,7 +172,7 @@ function setCloseForm(listClose) {
 function addNewPhoto(evt) {
   evt.preventDefault();
   let info = { name: titleInput.value, link: urlInput.value };
-  let card = new Card(info);
+  const card = new Card(info);
   card.generateCard();
 
   closePostForm();

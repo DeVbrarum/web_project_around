@@ -35,19 +35,20 @@ export default class Validate {
   }
 
   _validateField(expresion, input, field) {
+    const fieldInfo = this._data[1];
     const errorMessage = input.validationMessage;
     if (expresion.test(input.value.trim())) {
       //const errorMessage = input.validationMessage;
       field.classList.remove("invalid");
       //input.nextElementSibling.textContent = errorMessage;
       input.nextElementSibling.classList.remove("empty-field_error");
-      this._data[1][field.name] = true;
+      fieldInfo[field.name] = true;
       this._toggleButtonState();
     } else {
       field.classList.add("invalid");
       //input.nextElementSibling.textContent = errorMessage;
       input.nextElementSibling.classList.add("empty-field_error");
-      this._data[1][field.name] = false;
+      fieldInfo[field.name] = false;
       this._toggleButtonState();
     }
   }
@@ -63,33 +64,35 @@ export default class Validate {
   }
 
   _toggleButtonState() {
-    if (this._data[1].username && this._data[1].about) {
-      this._buttonActivated(this._data[1].saveButtonProfile);
+    const fieldInfo = this._data[1];
+    if (fieldInfo.username && fieldInfo.about) {
+      this._buttonActivated(fieldInfo.saveButtonProfile);
     } else {
-      this._buttonDisabled(this._data[1].saveButtonProfile);
+      this._buttonDisabled(fieldInfo.saveButtonProfile);
     }
 
-    if (this._data[1].title && this._data[1].urlImagen) {
-      this._buttonActivated(this._data[1].postNewImageButton);
+    if (fieldInfo.title && fieldInfo.urlImagen) {
+      this._buttonActivated(fieldInfo.postNewImageButton);
     } else {
-      this._buttonDisabled(this._data[1].postNewImageButton);
+      this._buttonDisabled(fieldInfo.postNewImageButton);
     }
   }
 
   _validateUrl(field) {
+    const fieldInfo = this._data[1];
     if (field.validity.valid) {
       const errorMessage = urlInput.validationMessage;
       urlInput.nextElementSibling.textContent = errorMessage;
       urlInput.classList.remove("invalid");
       urlInput.nextElementSibling.classList.remove("empty-field_error");
-      this._data[1].urlImagen = true;
+      fieldInfo.urlImagen = true;
       this._toggleButtonState();
     } else {
       const errorMessage = urlInput.validationMessage;
       urlInput.nextElementSibling.textContent = errorMessage;
       urlInput.classList.add("invalid");
       urlInput.nextElementSibling.classList.add("empty-field_error");
-      this._data[1].urlImagen = false;
+      fieldInfo.urlImagen = false;
       this._toggleButtonState();
     }
   }
