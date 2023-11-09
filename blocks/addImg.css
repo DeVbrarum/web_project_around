@@ -3,22 +3,28 @@
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 5s ease-in-out;
+  transition: all 0.5s linear;
+  display: block;
 }
 
 .addimg:hover {
   cursor: pointer;
 }
 
-.addimage_is-opened {
+/*.addimage_is-opened {
   display: block;
   z-index: 1;
   pointer-events: auto;
   visibility: visible;
   opacity: 1;
+}*/
+
+.addimg_hidden {
+  display: none;
+}
+
+.addimg_visuallyhidden {
+  opacity: 0;
 }
 
 .addimg__popup {
@@ -63,6 +69,10 @@
 .addimg__btn_activa {
   background-color: #000000;
   cursor: pointer;
+}
+
+.addimg__btn:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 984px) {

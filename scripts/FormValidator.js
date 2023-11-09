@@ -4,7 +4,7 @@ export default class Validate {
     this._infovalidar = infovalid;
   }
 
-  setEventListeners(e) {
+  enableValidation(e) {
     e = this._data[0];
     const inputList = Array.from(e.querySelectorAll(".form__input"));
     this._toggleButtonState();

@@ -1,4 +1,4 @@
-import Card from "./card.js";
+import Card from "./Card.js";
 import { formProperties as formprop } from "./index.js";
 
 const popuPropitaries = {
@@ -19,47 +19,51 @@ const listClose = profileBackground.concat(closeButton);
 //data to upload images from the website
 const photosDefaults = [
   {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-  {
-    name: "Good vibes",
-    link: "https://plus.unsplash.com/premium_photo-1677851913233-0758697643c7?auto=format&fit=crop&q=80&w=1471&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
   },
   {
     name: "Parque Nacional de la Vanoise",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
   },
   {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+  },
+
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+  },
+
+  {
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
   },
 ];
 
 const openPopupImage = () => {
-  popuPropitaries.imgPopup.classList.add("img-popup_activated");
+  animateOpenPopup(popuPropitaries.imgPopup);
+
+  window.addEventListener("keydown", closesWithEscape);
 };
 
 const openPostForm = () => {
-  formprop.formAddImg.classList.add("addimage_is-opened");
+  animateOpenPopup(formprop.formAddImg);
+
+  window.addEventListener("keydown", closesWithEscape);
 };
 
 const openProfileForm = () => {
   nameInput.value = formprop.profileName.textContent.trim();
   aboutInput.value = formprop.profileAbout.textContent.trim();
-  formprop.profileForm.classList.add("edit-profile_open");
+
+  animateOpenPopup(formprop.profileForm);
+  window.addEventListener("keydown", closesWithEscape);
 };
 
 const resetPostForm = () => {
@@ -87,24 +91,53 @@ const resetProfile = () => {
     item.nextElementSibling.classList.remove("empty-field_error");
   });
   nameInput.value = formprop.profileName.textContent.trim();
-  aboutInput.value = aboutInput.textContent.trim();
+  aboutInput.value = formprop.profileAbout.textContent.trim();
 };
 
 const closePopupImage = () => {
-  popuPropitaries.imgPopup.classList.remove("img-popup_activated");
+  animateClosePopup(popuPropitaries.imgPopup);
+
+  window.removeEventListener("keydown", closesWithEscape);
 };
 
 const closePostForm = () => {
   const fieldPost = document.querySelector(".addimg__inputs");
   fieldPost.reset();
-  formprop.formAddImg.classList.remove("addimage_is-opened");
+
+  animateClosePopup(formprop.formAddImg);
+
+  window.removeEventListener("keydown", closesWithEscape);
   resetPostForm();
 };
 
 const closeProfileForm = () => {
-  formprop.profileForm.classList.remove("edit-profile_open");
+  animateClosePopup(formprop.profileForm);
+  window.removeEventListener("keydown", closesWithEscape);
   resetProfile();
 };
+
+function animateOpenPopup(e) {
+  e.classList.remove(`${e.id}_hidden`);
+  setTimeout(function () {
+    e.classList.remove(`${e.id}_visuallyhidden`);
+  }, 18);
+}
+
+function animateClosePopup(e) {
+  e.classList.add(`${e.id}_visuallyhidden`);
+
+  setTimeout(function () {
+    e.classList.add(`${e.id}_hidden`);
+  }, 800);
+}
+
+function closesWithEscape(evt) {
+  if (evt.key === "Escape") {
+    closePostForm();
+    closeProfileForm();
+    closePopupImage();
+  }
+}
 
 function setPopupImgAction(btn) {
   const photoImg = btn.querySelector(".photos__img");
@@ -115,10 +148,9 @@ function setPopupImgAction(btn) {
   // Set open and close popup for each new photo added
   btn.addEventListener("click", function () {
     popuPropitaries.imgPopupPhoto.src = photoImg.src;
+    popuPropitaries.imgPopupPhoto.alt = photoTitle.textContent;
     popuPropitaries.imgPopupTitle.textContent = photoTitle.textContent;
     openPopupImage();
-
-    closesWithEscape();
   });
 }
 
@@ -126,8 +158,6 @@ function setToggleProfile() {
   formprop.profileButton.addEventListener("click", () => {
     openProfileForm();
   });
-
-  closesWithEscape();
 
   const saveNewProfile = document.querySelector(".edit-profile__inputs");
   saveNewProfile.addEventListener("submit", saveProfile);
@@ -138,19 +168,8 @@ function setTogglePost() {
     openPostForm();
   });
 
-  closesWithEscape();
   const addNewPost = document.querySelector(".addimg__inputs");
   addNewPost.addEventListener("submit", addNewPhoto);
-}
-
-function closesWithEscape() {
-  return window.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      closePostForm();
-      closeProfileForm();
-      closePopupImage();
-    }
-  });
 }
 
 function setCloseForm(listClose) {

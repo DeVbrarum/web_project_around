@@ -31,7 +31,7 @@ formProperties.profileButton.addEventListener("click", function (e) {
     [formProperties.profileForm, formProperties],
     expresiones
   );
-  formAValidar.setEventListeners();
+  formAValidar.enableValidation();
 });
 
 formProperties.addNewImageButton.addEventListener("click", function (e) {
@@ -41,7 +41,7 @@ formProperties.addNewImageButton.addEventListener("click", function (e) {
     [formProperties.formAddImg, formProperties],
     expresiones
   );
-  formAValidar.setEventListeners();
+  formAValidar.enableValidation();
 });
 
 setProfi();

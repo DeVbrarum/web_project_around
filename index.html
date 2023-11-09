@@ -42,7 +42,37 @@
           </button>
         </section>
 
-        <section class="form edit-profile">
+        <div class="photos">
+          <template class="photos__template">
+            <div class="photos__content">
+              <button class="photos__trash-btn">
+                <img
+                  src="images/Icons/trash.png"
+                  alt="trash icon"
+                  class="photos__trash-icon"
+                />
+              </button>
+              <button class="photos__imgPopup-btn">
+                <img src=" " alt="imagen del post" class="photos__img" />
+              </button>
+              <div class="photos__info">
+                <h2 class="photos__title"></h2>
+                <button class="photos__like-btn">
+                  <img
+                    src="images/Icons/wheart.png"
+                    alt="icon like heart"
+                    class="photos__like-img"
+                  />
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <section
+          class="form edit-profile edit-profile_hidden edit-profile_visuallyhidden"
+          id="edit-profile"
+        >
           <div class="form__background"></div>
           <div class="edit-profile__popup">
             <h2 class="form__title">Editar perfil</h2>
@@ -93,32 +123,10 @@
           </div>
         </section>
 
-        <div class="photos">
-          <template class="photos__template">
-            <div class="photos__content">
-              <button class="photos__trash-btn">
-                <img
-                  src="images/Icons/trash.png"
-                  alt="trash icon"
-                  class="photos__trash-icon"
-                />
-              </button>
-              <button class="photos__imgPopup-btn">
-                <img src=" " alt="imagen del post" class="photos__img" />
-              </button>
-              <h2 class="photos__title"></h2>
-              <button class="photos__like-btn">
-                <img
-                  src="images/Icons/wheart.png"
-                  alt="icon like heart"
-                  class="photos__like-img"
-                />
-              </button>
-            </div>
-          </template>
-        </div>
-
-        <section class="form addimg">
+        <section
+          class="form addimg addimg_hidden addimg_visuallyhidden"
+          id="addimg"
+        >
           <div class="form__background addimg__background"></div>
           <div class="addimg__popup">
             <h3 class="form__title">Nuevo Lugar</h3>
@@ -160,7 +168,10 @@
           </div>
         </section>
 
-        <section class="img-popup">
+        <section
+          class="img-popup img-popup_hidden img-popup_visuallyhidden"
+          id="img-popup"
+        >
           <div class="img-popup__background"></div>
           <div class="img-popup__content" id="imagen">
             <button class="img-popup__close closebtn">
