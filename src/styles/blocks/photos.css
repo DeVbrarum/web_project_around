@@ -19,7 +19,7 @@
   border-radius: 10px;
 }
 
-.photos__trash-btn {
+.photos__trash-button {
   position: absolute;
   right: 5px;
   top: 5px;
@@ -31,11 +31,11 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.photos__trash-btn:hover {
+.photos__trash-button:hover {
   opacity: 0.8;
 }
 
-.photos__imgPopup-btn {
+.photos__imgPopup-button {
   padding: 0;
   width: 282px;
   height: 282px;
@@ -71,7 +71,7 @@
   overflow: hidden;
 }
 
-.photos__like-btn {
+.photos__like-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -81,12 +81,16 @@
   color: inherit;
 }
 
-.photos__like-btn:hover {
+.icon_like-heart { 
+  transition: opacity 0.3s ease-in-out;
+}
+
+.icon_like-heart:hover {
   opacity: 0.8;
 }
 
-.photos__like-btn_activated {
-  background-image: url(../images/Icons/bheart.png);
+.icon_like-heart_activated {
+  background-image: url(/src/images/Icons/bheart.png);
 }
 
 /* iPads and smartphones (portrait and landscape) ----------- */

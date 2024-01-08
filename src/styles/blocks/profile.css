@@ -1,14 +1,12 @@
 .profile {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-
   max-width: calc(100% - 398px);
   min-height: 120px;
-  padding: 0;
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
 }
 
 .profile__avatar {
@@ -20,11 +18,11 @@
 .profile__avatar-image {
   width: 100%;
   height: 100%;
+  clip-path: circle(60px at center);
 }
 
 .profile__info {
   max-width: calc(100% - 321px);
-  margin-left: 30px;
 }
 
 .profile__info-content {
@@ -50,6 +48,17 @@
   color: #ffffff;
 }
 
+.profile__editUserButton {
+  min-width: 23px;
+  min-height: 23px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
 .profile__info-about {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -64,28 +73,11 @@
   color: #ffffff;
 }
 
-.profile__editButton {
-  min-width: 23px;
-  min-height: 23px;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: 1px solid #ffffff;
-  cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.profile__editButton:hover {
+.profile__editUserButton:hover {
   opacity: 0.5;
 }
 
-.profile__editButton-image {
-  width: 15px;
-  height: 15px;
-  margin: auto;
-}
-
-.profile__addButton {
+.profile__addCardButton {
   position: absolute;
   right: 0;
   background-color: transparent;
@@ -94,14 +86,14 @@
   box-sizing: border-box;
   width: 150px;
   height: 50px;
-  border: 2px solid #ffffff;
+  border: 2px solid white;
   border-radius: 2px;
   transition: opacity 0.3s ease-in-out;
   color: inherit;
   cursor: pointer;
 }
 
-.profile__addButton:hover {
+.profile__addCardButton:hover {
   opacity: 0.5;
 }
 
@@ -111,7 +103,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    gap: 0;
     min-width: calc(100% - 38px);
 
     padding: 0;
@@ -123,9 +115,9 @@
   }
 
   .profile__info-content {
-    width: max-content;
+    max-width: max-content;
     gap: 12px;
-    margin: 0;
+    margin: auto;
   }
 
   .profile__info-name {
@@ -139,20 +131,14 @@
     text-align: center;
   }
 
-  .profile__editButton {
+  .profile__editUserButton {
     min-width: 18px;
     min-height: 18px;
     padding: 0;
     margin: 0;
   }
 
-  .profile__editButton-image {
-    width: 10px;
-    height: 10px;
-    margin: auto;
-  }
-
-  .profile__addButton {
+  .profile__addCardButton {
     margin-top: 36px;
     display: block;
     position: static;
@@ -162,14 +148,6 @@
 
 @media screen and (max-width: 569px) {
   .profile__info {
-    max-width: fit-content;
-    margin-left: 0;
-  }
-
-  .profile__info-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0;
-    margin: 0;
+    min-width: 282px;
   }
 }

@@ -1,14 +1,14 @@
-# Proyecto 8: Alrededor de los Estados Unidos
+# Proyecto 9: Alrededor de los Estados Unidos
 
 ---
 
-![ Around the U.S.](./images/Screenwebsite.png)
+![ Around the U.S.](./src/images/Screenwebsite.png)
 
 ---
 
 ### Visita la página >>
 
-https://devbrarum.github.io/web_project_around/
+https://devbrarum.github.io/web_project_4_esp/
 
 ---
 
@@ -25,9 +25,7 @@ Este es un proyecto que experimenta con la interactividad de javascript simuland
 - Aplicación de responsividad
 - Implementacion de Javascript
 - Validacion formularios
-- JavaScript Modular
-- Sentencias export e import
-- Trabajando en POO
+- Uso de Webpack
 
 ---
 
@@ -38,6 +36,10 @@ Este es un proyecto que experimenta con la interactividad de javascript simuland
 - Visual Studio
 - Figma
 - javascript
+- Nodejs
+- Webpack
+- Webpack-cli
+- Webpack-dev-server
 
 ---
 

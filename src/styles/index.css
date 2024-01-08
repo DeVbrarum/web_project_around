@@ -1,13 +1,14 @@
 @import url(../vendor/normalize.css);
-@import url(../blocks/header.css);
-@import url(../blocks/logo.css);
-@import url(../blocks/profile.css);
-@import url(../blocks/photos.css);
-@import url(../blocks/form.css);
-@import url(../blocks/img-popup.css);
-@import url(../blocks/edit-profile.css);
-@import url(../blocks/addImg.css);
-@import url(../blocks/footer.css);
+@import url(./blocks/form.css);
+@import url(./blocks/profileForm.css);
+@import url(./blocks/header.css);
+@import url(./blocks/profile.css);
+@import url(./blocks/addNewImage.css);
+@import url(./blocks/footer.css);
+@import url(./blocks/imgPopup.css);
+@import url(./blocks/photos.css);
+@import url(./blocks/footer.css);
+
 
 @font-face {
   font-family: "Inter";
@@ -33,16 +34,11 @@
 }
 
 body {
-  background-color: #000000;
-  -webkit-font-smoothing: antialiased;
+  background-color: black;
 }
 
-.page {
-  max-width: 1280px;
-  margin: auto;
-}
 
-@media screen and (max-width: 445px) {
+@media screen and (max-width: 330px) {
   .page {
     min-width: 320px;
     margin: auto;

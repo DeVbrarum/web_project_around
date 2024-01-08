@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Around the U.S.</title>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/Icons/Skull.ico"
+    />
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+  <body class="body">
+    <div class="page">
+      <header class="header">
+        <img
+          src="<%=require('../images/logo.png')%>"
+          alt="Logo Around The US"
+          class="header__logo"
+        />
+      </header>
+      <main>
+        <section class="profile">
+          <div class="profile__avatar">
+            <img
+              src="<%=require('../images/profile.jpg')%>"
+              alt="Avatar del usuario"
+              class="profile__avatar-image"
+            />
+          </div>
+
+          <div class="profile__info">
+            <div class="profile__info-content">
+              <h2 class="profile__info-name">Jacques Cousteau</h2>
+              <button class="profile__editUserButton">
+                <img src="<%=require('../images/Icons/editIcon.png')%>" alt="Edit user button" />
+              </button>
+            </div>
+            <h3 class="profile__info-about">Explorador</h3>
+          </div>
+          <button class="profile__addCardButton">
+            <img src="<%=require('../images/Icons/plusIcon.png')%>" alt="Add card icon button" />
+          </button>
+        </section>
+
+        <section class="photos">
+          <template class="photos__template">
+            <div class="photos__content">
+              <button class="photos__trash-button">
+                <img
+                  src="<%=require('../images/Icons/trash.png')%>"
+                  alt="trash icon"
+                  class="photos__trash-icon"
+                />
+              </button>
+              <button class="photos__imgPopup-button">
+                <img src=" " alt="imagen del post" class="photos__img" />
+              </button>
+              <div class="photos__info">
+                <h2 class="photos__title"></h2>
+                <button class="photos__like-button">
+                  <img
+                    src="<%=require('../images/Icons/wheart.png')%>"
+                    alt="icon like heart"
+                    class="icon_like-heart"
+                  />
+                </button>
+              </div>
+            </div>
+          </template>
+        </section>
+
+        <section
+          class="profileForm profileForm_hidden profileForm_visuallyhidden"
+          id="profileForm"
+        >
+          <form class="form profileForm__popup">
+            <h2 class="form__title">Editar perfil</h2>
+            <button class="form__close" type="button"> 
+              <img
+                src="<%=require('../images/Icons/close-icon.png')%>"
+                alt="icon close"
+                class="form__close-icon"
+              />
+            </button>
+            <input
+              type="text"
+              class="form__input"
+              id="name"
+              name="username"
+              placeholder="Nombre"
+              minlength="2"
+              maxlength="40"
+              autocomplete="given-name"
+              required
+            />
+            <span class="empty-field">Por favor, rellenar este campo.</span>
+
+            <input
+              
+              class="form__input"
+              type="text"
+              name="job"
+              id="job"
+              placeholder="Algo sobre mi"
+              minlength="2"
+              maxlength="200"
+              autocomplete="given-job"
+              required
+            />
+            <span class="empty-field"> Por favor, rellenar este campo.</span>
+            <button
+              class="form__submit form__submit-button_actived"
+              type="submit"
+              id="btnProfile"
+            >
+              Guardar
+            </button>
+          </form>
+          <div class="profileForm__background"></div>
+        </section>
+
+        <section
+          class=" addNewImage addNewImage_hidden addNewImage_visuallyhidden"
+          id="addNewImage"
+        >
+          
+          <form class="form addNewImage__popup">
+            <h3 class="form__title">Nuevo Lugar</h3>
+            <button class="form__close" type="button">
+              <img
+                src="<%=require('../images/Icons/close-icon.png')%>"
+                alt="Close icon"
+                class="form__close-icon"
+              />
+            </button>
+
+            
+              <input
+                type="text"
+                class="form__input"
+                id="title"
+                name="title"
+                placeholder="Titulo"
+                minlength="2"
+                maxlength="30"
+                autocomplete="given-title"
+                required
+              />
+              <span class="empty-field">Por favor, rellena este campo.</span>
+              <input
+                type="url"
+                class="form__input"
+                id="link"
+                name="urlImagen"
+                placeholder="Image url"
+                pattern="https://.*"
+                autocomplete="given-url"
+                required
+              />
+              <span class="empty-field"> </span>
+              <button type="submit" class="form__submit" disabled >
+                Crear
+              </button>
+            
+          </form>
+          <div class="addNewImage__background"></div>
+        </section>
+
+        <section
+          class="imgPopup imgPopup_hidden imgPopup_visuallyhidden"
+          id="imgPopup"
+        >
+          <div class="imgPopup__content" id="imagen">
+            <button class="imgPopup__close closebtn" type="button">
+              <img
+                src="<%=require('../images/Icons/close-icon.png')%>"
+                alt="close icon"
+                class="form__close-icon"
+              />
+            </button>
+            <img src=" " alt="fotografia" class="imgPopup__photo" />
+            <h2 class="imgPopup__title"></h2>
+          </div>
+          <div class="imgPopup__background"></div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">Copyright &copy; Juan Avila</p>
+      </footer>
+    </div>
+  </body>
+</html>

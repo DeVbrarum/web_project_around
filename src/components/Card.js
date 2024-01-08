@@ -2,7 +2,7 @@ import { popImgAct } from "./utils.js";
 
 export default class Card {
   constructor(data) {
-    this._namePhoto = data.name;
+    this._namePhoto = data.title;
     this._urlPhoto = data.link;
   }
 
@@ -24,32 +24,26 @@ export default class Card {
 
     this._setEventListeners(this._element);
 
-    this._addNewCard(this._element);
-
     return this._element;
-  }
-
-  _addNewCard(template) {
-    document.querySelector(".photos").prepend(template);
   }
 
   _setEventListeners(element) {
     // Set option to delete for each new photo added
     element
-      .querySelector(".photos__trash-btn")
+      .querySelector(".photos__trash-button")
       .addEventListener("click", function () {
         element.remove();
       });
 
     // Set show popup for each new photo added
-    let photoButton = element.querySelector(".photos__imgPopup-btn");
+    let photoButton = element.querySelector(".photos__imgPopup-button");
     popImgAct(photoButton);
 
     // Set like button for each new photo added
     this._element
-      .querySelector(".photos__like-img")
+      .querySelector(".icon_like-heart")
       .addEventListener("click", (evt) =>
-        evt.target.classList.toggle("photos__like-btn_activated")
+        evt.target.classList.toggle("icon_like-heart_activated")
       );
   }
 }
