@@ -133,12 +133,12 @@
   cursor: default;
 }
 
-.form__submit-button_actived {
+.form__submit_actived {
   background-color: #000000;
   cursor: pointer;
 }
 
-.form__submit-button:hover {
+.form__submit:hover {
   opacity: 0.8;
 }
 

@@ -116,10 +116,10 @@ function addNewPhoto(item) {
 }
 
 function setPopupImgAction(element) {
-  const photoImg = element.querySelector(".photos__img");
+  /*const photoImg = element.querySelector(".photos__img");
   const photoTitle = element
     .closest(".photos__content")
-    .querySelector(".photos__title");
+    .querySelector(".photos__title");*/
 
   // Set open and close popup for each new photo added
   element.addEventListener("click", function (evt) {
