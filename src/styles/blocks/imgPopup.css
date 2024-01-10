@@ -110,6 +110,6 @@
 /* iPads and smartphones (portrait and landscape) ----------- */
 @media screen and (max-height: 800px) and (min-width: 914px) {
   .imgPopup__content {
-    top: 15%
+    top: 15%;
   }
 }
