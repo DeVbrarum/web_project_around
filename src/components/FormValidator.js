@@ -48,4 +48,12 @@ export default class Validate {
   _isValidForm() {
     return Object.values(this._fieldValidity).every(valid => valid);
   }
+
+  resetValidation() {
+    this._inputElements.forEach((input) => {
+      // Restablecer clases y mensajes de error
+      input.classList.remove('invalid');
+      input.nextElementSibling.textContent = '';
+    });
+  }
 }

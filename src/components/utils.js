@@ -116,11 +116,6 @@ function addNewPhoto(item) {
 }
 
 function setPopupImgAction(element) {
-  /*const photoImg = element.querySelector(".photos__img");
-  const photoTitle = element
-    .closest(".photos__content")
-    .querySelector(".photos__title");*/
-
   // Set open and close popup for each new photo added
   element.addEventListener("click", function (evt) {
     const popupImage = new PopupWithImage(".imgPopup");
@@ -132,4 +127,4 @@ renderPage.renderItems();
 popupWithFormUser.setEventListeners();
 popupWithFormNewImage.setEventListeners();
 
-export { setPopupImgAction as popImgAct, popupWithFormUser, popupWithFormNewImage, userInfo, formProperties };
+export { setPopupImgAction as popImgAct, popupWithFormUser, popupWithFormNewImage, userInfo, formProperties, formNewCardValidate };

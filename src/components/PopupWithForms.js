@@ -1,5 +1,7 @@
+
 import { Popup } from "./Popup.js";
-import { userInfo } from "./utils.js";
+import { userInfo, formNewCardValidate } from "./utils.js";
+
 
 
 class PopupWithForm extends Popup {
@@ -39,6 +41,7 @@ class PopupWithForm extends Popup {
   
     close() {
       this._form.reset();
+      formNewCardValidate.resetValidation();
       super.close();
     }
   
