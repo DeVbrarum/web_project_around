@@ -4,14 +4,14 @@
   height: 100%;
   position: fixed;
   top: 0;
-}
-
-.profileForm_hidden {
-  display: none;
-}
-
-.profileForm_visuallyhidden {
   opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.profileForm_open {
+  opacity: 1;
+  visibility: visible;
 }
 
 .profileForm__popup {

@@ -6,14 +6,14 @@
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-}
-
-.imgPopup_hidden {
-  display: none;
-}
-
-.imgPopup_visuallyhidden {
   opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.imgPopup_open {
+  opacity: 1;
+  visibility: visible;
 }
 
 .imgPopup__background {

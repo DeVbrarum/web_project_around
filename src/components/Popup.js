@@ -5,19 +5,14 @@ class Popup {
   }
 
   open() {
-    this._popupSelector.classList.remove(`${this._popupSelector.id}_hidden`);
 
-    setTimeout(() => {
-      this._popupSelector.classList.remove(`${this._popupSelector.id}_visuallyhidden`);
-    }, 200);
+    this._popupSelector.classList.add(`${this._popupSelector.id}_open`);
     document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
-    this._popupSelector.classList.add(`${this._popupSelector.id}_visuallyhidden`);
-    setTimeout(() => {
-      this._popupSelector.classList.add(`${this._popupSelector.id}_hidden`);
-    }, 500);
+
+    this._popupSelector.classList.remove(`${this._popupSelector.id}_open`);
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
@@ -34,11 +29,11 @@ class Popup {
         this.close();
       });
 
-      this._popupSelector
-    .querySelector(`.${this._popupSelector.id}__background`)
-    .addEventListener("click", () => {
-      this.close();
-    });
+    this._popupSelector
+      .querySelector(`.${this._popupSelector.id}__background`)
+      .addEventListener("click", () => {
+        this.close();
+      });
   }
 }
 

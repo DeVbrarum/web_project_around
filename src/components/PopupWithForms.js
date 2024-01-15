@@ -1,14 +1,15 @@
 
 import { Popup } from "./Popup.js";
-import { userInfo, formNewCardValidate } from "./utils.js";
+import { userInfo } from "./utils.js";
 
 
 
 class PopupWithForm extends Popup {
-    constructor(popupSelector, { handleFormSubmit, fields }) {
+    constructor(popupSelector, { handleFormSubmit, fields, formValidator }) {
       super(popupSelector);
       this._handleFormSubmit = handleFormSubmit;
       this._fields = fields;
+      this._formValidator = formValidator;
       this._form = this._popupSelector.querySelector(".form");
     }
   
@@ -41,7 +42,9 @@ class PopupWithForm extends Popup {
   
     close() {
       this._form.reset();
-      formNewCardValidate.resetValidation();
+      if (this._formValidator) {
+        this._formValidator.resetValidation();
+      }
       super.close();
     }
   

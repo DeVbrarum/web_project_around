@@ -55,13 +55,19 @@ const photosDefaults = [
   },
 ];
 
+
+
 const formProperties = {
   profileButton: document.querySelector(".profile__editUserButton"),
   profileForm: document.querySelector(".profileForm__popup"),
   formAddNewImage: document.querySelector(".addNewImage__popup"),
   addNewImageButton: document.querySelector(".profile__addCardButton"),
+  cardContainer: document.querySelector('.photos'),
 };
 
+
+const formProfileValidate = new Validate(formProperties.profileForm, validationConfig);
+const formNewCardValidate = new Validate(formProperties.formAddNewImage, validationConfig);
 
 const popupWithFormUser = new PopupWithForm('.profileForm', {
   handleFormSubmit: (inputValues) => {
@@ -70,7 +76,9 @@ const popupWithFormUser = new PopupWithForm('.profileForm', {
   fields: {
     name: 'name',
     job: 'job'
-  }
+  },
+
+  formValidator: formProfileValidate
 });
 
 const popupWithFormNewImage = new PopupWithForm('.addNewImage', {
@@ -88,11 +96,10 @@ const popupWithFormNewImage = new PopupWithForm('.addNewImage', {
   fields: {
     title: 'title',
     link: 'link'
-  }
-});
+  },
 
-const formProfileValidate = new Validate(formProperties.profileForm, validationConfig);
-const formNewCardValidate = new Validate(formProperties.formAddNewImage, validationConfig);
+  formValidator: formNewCardValidate
+});
 
 
 const userInfo = new UserInfo({
@@ -109,22 +116,28 @@ const renderPage = new Section(
   ".photos"
 );
 
+
+formProperties.cardContainer.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("photos__imgPopup-button")) {
+    const cardElement = evt.target.closest(".photos__content");
+
+    if (cardElement) {
+      const title = cardElement.querySelector(".photos__title").textContent;
+      const link = cardElement.querySelector(".photos__img").src;
+      const popupImage = new PopupWithImage(".imgPopup");
+      popupImage.open({ srcElement: { src: link, alt: title } });
+    }
+  }
+});
+
 function addNewPhoto(item) {
   const card = new Card(item);
   const newCard = card.generateCard();
   return newCard;
 }
 
-function setPopupImgAction(element) {
-  // Set open and close popup for each new photo added
-  element.addEventListener("click", function (evt) {
-    const popupImage = new PopupWithImage(".imgPopup");
-    popupImage.open(evt);
-  });
-}
-
 renderPage.renderItems();
 popupWithFormUser.setEventListeners();
 popupWithFormNewImage.setEventListeners();
 
-export { setPopupImgAction as popImgAct, popupWithFormUser, popupWithFormNewImage, userInfo, formProperties, formNewCardValidate };
+export { popupWithFormUser, popupWithFormNewImage, userInfo, formProperties, formNewCardValidate };

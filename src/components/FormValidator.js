@@ -16,18 +16,26 @@ export default class Validate {
   _validateField(input) {
     const fieldName = input.name;
     const fieldConfig = this._validationConfig[fieldName];
+
+    // Check if fieldConfig exists
+    if (!fieldConfig) {
+      console.error(`No se encontró la configuración de validación para el campo '${fieldName}'`);
+      return;
+    }
+
     const errorMessage = fieldConfig.errorMessage;
-  
+
+    const errorElement = this._formElement.querySelector(`[data-error="${fieldName}"]`);
 
     if (fieldConfig.expression.test(input.value.trim())) {
       input.classList.remove("invalid");
-      input.nextElementSibling.textContent = errorMessage;
-      input.nextElementSibling.classList.remove("empty-field_error");
+      errorElement.textContent = errorMessage;
+      errorElement.classList.remove("empty-field_error");
       this._fieldValidity[fieldName] = true;
     } else {
       input.classList.add("invalid");
-      input.nextElementSibling.textContent = errorMessage;
-      input.nextElementSibling.classList.add("empty-field_error");
+      errorElement.textContent = errorMessage;
+      errorElement.classList.add("empty-field_error");
       this._fieldValidity[fieldName] = false;
     }
 
@@ -39,9 +47,9 @@ export default class Validate {
     this._submitButton.disabled = !isFormValid;
 
     if (isFormValid) {
-      this._submitButton.classList.add("form__submit-button_actived");
+      this._submitButton.classList.add("form__submit_actived");
     } else {
-      this._submitButton.classList.remove("form__submit-button_actived");
+      this._submitButton.classList.remove("form__submit_actived");
     }
   }
 
@@ -51,7 +59,7 @@ export default class Validate {
 
   resetValidation() {
     this._inputElements.forEach((input) => {
-      // Restablecer clases y mensajes de error
+      // Reset error messages
       input.classList.remove('invalid');
       input.nextElementSibling.textContent = '';
     });

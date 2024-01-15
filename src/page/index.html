@@ -71,7 +71,7 @@
         </section>
 
         <section
-          class="profileForm profileForm_hidden profileForm_visuallyhidden"
+          class="profileForm"
           id="profileForm"
         >
           <form class="form profileForm__popup">
@@ -94,7 +94,7 @@
               autocomplete="given-name"
               required
             />
-            <span class="empty-field">Por favor, rellenar este campo.</span>
+            <span class="empty-field" data-error="username">Por favor, rellenar este campo.</span>
 
             <input
               
@@ -105,10 +105,9 @@
               placeholder="Algo sobre mi"
               minlength="2"
               maxlength="200"
-              autocomplete="given-job"
               required
             />
-            <span class="empty-field"> Por favor, rellenar este campo.</span>
+            <span class="empty-field" data-error="job"> Por favor, rellenar este campo.</span>
             <button
               class="form__submit form__submit_actived"
               type="submit"
@@ -121,7 +120,7 @@
         </section>
 
         <section
-          class=" addNewImage addNewImage_hidden addNewImage_visuallyhidden"
+          class=" addNewImage"
           id="addNewImage"
         >
           
@@ -144,10 +143,9 @@
                 placeholder="Titulo"
                 minlength="2"
                 maxlength="30"
-                autocomplete="given-title"
                 required
               />
-              <span class="empty-field">Por favor, rellena este campo.</span>
+              <span class="empty-field" data-error="title">Por favor, rellena este campo.</span>
               <input
                 type="url"
                 class="form__input"
@@ -155,10 +153,9 @@
                 name="urlImagen"
                 placeholder="Image url"
                 pattern="https://.*"
-                autocomplete="given-url"
                 required
               />
-              <span class="empty-field"> </span>
+              <span class="empty-field" data-error="urlImagen"> </span>
               <button type="submit" class="form__submit" disabled >
                 Crear
               </button>
@@ -168,7 +165,7 @@
         </section>
 
         <section
-          class="imgPopup imgPopup_hidden imgPopup_visuallyhidden"
+          class="imgPopup"
           id="imgPopup"
         >
           <div class="imgPopup__content" id="imagen">

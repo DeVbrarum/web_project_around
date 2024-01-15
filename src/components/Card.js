@@ -1,4 +1,4 @@
-import { popImgAct } from "./utils.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 
 export default class Card {
   constructor(data) {
@@ -22,28 +22,30 @@ export default class Card {
     this._element.querySelector(".photos__title").textContent = this._namePhoto;
     this._element.querySelector(".photos__template");
 
-    this._setEventListeners(this._element);
+    this._setEventListeners();
 
     return this._element;
   }
 
-  _setEventListeners(element) {
-    // Set option to delete for each new photo added
-    element
-      .querySelector(".photos__trash-button")
-      .addEventListener("click", function () {
-        element.remove();
-      });
+  _handleImageClick() {
+    const urlImage = this._urlPhoto;
+    const titleImage = this._namePhoto;
+    const popupImage = new PopupWithImage(".imgPopup");
+    popupImage.open({ srcElement: { src: urlImage, alt: titleImage } });
+  }
 
-    // Set show popup for each new photo added
-    let photoButton = element.querySelector(".photos__imgPopup-button");
-    popImgAct(photoButton);
+  _setEventListeners() {
+    
+    this._element.querySelector(".photos__trash-button").addEventListener("click", () => {
+      this._element.remove();
+    });
 
-    // Set like button for each new photo added
-    this._element
-      .querySelector(".icon_like-heart")
-      .addEventListener("click", (evt) =>
-        evt.target.classList.toggle("icon_like-heart_activated")
-      );
+    this._element.querySelector(".photos__imgPopup-button").addEventListener("click", () => {
+      this._handleImageClick();
+    });
+
+    this._element.querySelector(".icon_like-heart").addEventListener("click", (evt) => {
+      evt.target.classList.toggle("icon_like-heart_activated");
+    });
   }
 }
