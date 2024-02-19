@@ -3,13 +3,13 @@ import { Popup } from "./Popup.js";
 import { userInfo } from "./utils.js";
 
 
-
 class PopupWithForm extends Popup {
     constructor(popupSelector, { handleFormSubmit, fields, formValidator }) {
       super(popupSelector);
       this._handleFormSubmit = handleFormSubmit;
       this._fields = fields;
       this._formValidator = formValidator;
+      this._submitButton = this._popupSelector.querySelector(".form__submit");
       this._form = this._popupSelector.querySelector(".form");
     }
   
@@ -27,6 +27,7 @@ class PopupWithForm extends Popup {
   
     open() {
       if (this._popupSelector.id === "profileForm") {
+        this._submitButton.classList.add("form__submit_actived");
         const currentUserInfo = userInfo.getUserInfo(); 
   
         //Set the current values in the form input fields
@@ -41,10 +42,16 @@ class PopupWithForm extends Popup {
     }
   
     close() {
-      this._form.reset();
+      if(this._popupSelector.id === "addNewImage") {
+        this._submitButton.classList.remove("form__submit_actived");
+        this._submitButton.disabled = true;
+        this._formValidator.resetValidation();
+      }
+
       if (this._formValidator) {
         this._formValidator.resetValidation();
       }
+      this._form.reset();
       super.close();
     }
   
@@ -59,8 +66,7 @@ class PopupWithForm extends Popup {
           formValues[key] = fieldInput.value;
         }
       }
-  
-  
+
       return formValues;
     }
   }

@@ -81,6 +81,16 @@
   color: inherit;
 }
 
+.photos__like-count {
+  /*margin-left: 8px; Añade un margen si es necesario */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+}
+
 .icon_like-heart { 
   transition: opacity 0.3s ease-in-out;
 }

@@ -23,20 +23,21 @@
         <section class="profile">
           <div class="profile__avatar">
             <img
-              src="<%=require('../images/profile.jpg')%>"
+              src=""
               alt="Avatar del usuario"
               class="profile__avatar-image"
             />
+            <div class="profile__edit-icon"></div>
           </div>
 
           <div class="profile__info">
             <div class="profile__info-content">
-              <h2 class="profile__info-name">Jacques Cousteau</h2>
+              <h2 class="profile__info-name"> </h2>
               <button class="profile__editUserButton">
                 <img src="<%=require('../images/Icons/editIcon.png')%>" alt="Edit user button" />
               </button>
             </div>
-            <h3 class="profile__info-about">Explorador</h3>
+            <h3 class="profile__info-about"> </h3>
           </div>
           <button class="profile__addCardButton">
             <img src="<%=require('../images/Icons/plusIcon.png')%>" alt="Add card icon button" />
@@ -58,23 +59,66 @@
               </button>
               <div class="photos__info">
                 <h2 class="photos__title"></h2>
-                <button class="photos__like-button">
-                  <img
-                    src="<%=require('../images/Icons/wheart.png')%>"
-                    alt="icon like heart"
-                    class="icon_like-heart"
-                  />
-                </button>
+                <div class="photos__like-countainer">
+                  <button class="photos__like-button">
+                    <img
+                      src="<%=require('../images/Icons/wheart.png')%>"
+                      alt="icon like heart"
+                      class="icon_like-heart" 
+                    />
+                  </button>
+                  <div class="photos__like-count"></div>
+                </div>
               </div>
             </div>
           </template>
+        </section>
+
+        <section id="deletePopup" class="deletePopup">
+          <form class="deletePopup__content">
+            <button class="deletePopup__close" type="button">
+              <img
+                src="<%=require('../images/Icons/close-icon.png')%>"
+                alt="close icon"
+                class="deletePopup__close-icon"
+              />
+            </button>
+            <h2 class="deletePopup__title">¿Estás seguro?</h2>
+            <button id="deletePopupButton" class="deletePopup__button" type="submit">Sí</button>
+          </form>
+          <div class="deletePopup__background"></div>
+        </section>
+
+        <section id="avatarPopup" class="avatarPopup">
+          <form class="form avatarPopup__content">
+            <button class="form__close avatarPopup__close" type="button">
+              <img
+                src="<%=require('../images/Icons/close-icon.png')%>"
+                alt="close icon"
+                class="form__close-icon avatarPopup__close-icon"
+              />
+            </button>
+            <h2 class="form__title avatarPopup__title">Cambia foto de perfil</h2>
+            <input
+                type="url"
+                class="form__input avatarPopup__input"
+                id="urlAvatar"
+                name="urlAvatar"
+                placeholder="https://somewebsite.com/someimage.jpg"
+                pattern="https://.*"
+                required
+              />
+              <span class="empty-field" data-error="urlAvatar"> </span>
+            <button id="avatarPopupSubmit" class="avatarPopup__button form__submit" type="submit" disabled>Guardar</button>
+          </form>
+          <div class="avatarPopup__background"></div>
         </section>
 
         <section
           class="profileForm"
           id="profileForm"
         >
-          <form class="form profileForm__popup">
+          <form  class="form profileForm__popup">
             <h2 class="form__title">Editar perfil</h2>
             <button class="form__close" type="button"> 
               <img
@@ -111,7 +155,7 @@
             <button
               class="form__submit form__submit_actived"
               type="submit"
-              id="btnProfile"
+              id="buttonSubmitProfile"
             >
               Guardar
             </button>
@@ -156,7 +200,7 @@
                 required
               />
               <span class="empty-field" data-error="urlImagen"> </span>
-              <button type="submit" class="form__submit" disabled >
+              <button id="newCardButton"  type="submit" class="form__submit" disabled >
                 Crear
               </button>
             

@@ -10,15 +10,37 @@
 }
 
 .profile__avatar {
+  position: relative;
   width: 120px;
   height: 120px;
-  clip-path: circle(60px at center);
 }
 
 .profile__avatar-image {
   width: 100%;
   height: 100%;
-  clip-path: circle(60px at center);
+  overflow: hidden;
+  border-radius: 50%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__edit-icon {
+  position: absolute;
+  top: 47px; /* Distancia desde la parte inferior del contenedor */
+  right: 47px; /* Distancia desde la parte derecha del contenedor */
+  width: 24px; /* Ancho del icono */
+  height: 24px; /* Altura del icono */
+  background: url('/src/images/Icons/vector.png') no-repeat center center; /* Ruta al icono de edición */
+  background-size: cover; /* Asegura que el icono cubra el área designada */
+  display: none; /* Oculta el icono por defecto */
+  cursor: pointer;
+}
+
+.profile__avatar:hover .profile__avatar-image {
+  opacity: 0.5;
+}
+
+.profile__avatar:hover .profile__edit-icon {
+  display: block;
 }
 
 .profile__info {

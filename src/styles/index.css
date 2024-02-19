@@ -8,6 +8,8 @@
 @import url(./blocks/imgPopup.css);
 @import url(./blocks/photos.css);
 @import url(./blocks/footer.css);
+@import url(./blocks/deletePopup.css);
+@import url(./blocks/avatarPopup.css);
 
 
 @font-face {

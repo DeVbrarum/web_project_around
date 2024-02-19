@@ -1,4 +1,4 @@
-# Proyecto 9: Alrededor de los Estados Unidos
+# Proyecto 10: Alrededor de los Estados Unidos
 
 ---
 
@@ -26,6 +26,7 @@ Este es un proyecto que experimenta con la interactividad de javascript simuland
 - Implementacion de Javascript
 - Validacion formularios
 - Uso de Webpack
+- Interacción API
 
 ---
 
